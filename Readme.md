@@ -23,8 +23,8 @@
 ③  分片器splitter = SentenceSplitter(chunk_size=1024)<br />
 
 ### 四、RAG模块<br />
-④  retriver检索器提升：
-查询用的是BM25Retriever，查询引擎是CustomQueryEngine
+④  retriver检索器提升：<br />
+查询用的是BM25Retriever，查询引擎是CustomQueryEngine<br />
 ```
 bm25_retriever = BM25Retriever.from_defaults(nodes=nodes, similarity_top_k=10)
 synthesizer = get_response_synthesizer(response_mode="compact")
@@ -32,15 +32,15 @@ query_engine = RAGQueryEngine(
     retriever= bm25_retriever, response_synthesizer=synthesizer,llm=llm
 )
 ```
-<br />
-② retriver检索器提升：在①的基础上再加上重排序
+
+② retriver检索器提升：在①的基础上再加上重排序<br />
 ```
 from llama_index.core.postprocessor import SentenceTransformerRerank
 
 reranker = SentenceTransformerRerank(top_n=4, model="BAAI/bge-reranker-base")
 ```
 <br />
-③ 假设性问题法HyDE（仍然在实验中）
+③ 假设性问题法HyDE（仍然在实验中）<br />
 需要LLM生成假设性问题，比如 ChatGPT，在响应查询时创建一个理论文档，而不是使用查询及其计算出的向量直接在向量数据库中搜索。
 然后搜索嵌入向量以找到匹配项。在这里，我们进行比较的是答案到答案的嵌入相似性搜索，而不是传统 RAG 检索方法中的查询到答案的嵌入相似性搜索。
 
