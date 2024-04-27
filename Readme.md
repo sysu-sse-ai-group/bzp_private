@@ -9,7 +9,7 @@
 ####  已完成：
 ### 一、数据收集：
 
-医患数据：https://github.com/Toyhom/Chinese-medical-dialogue-data/tree/master/Data_%E6%95%B0%E6%8D%AE （对话型：体量较大）<br />
+见文件
 保罗·格雷厄姆的文章：https://github.com/run-llama/llama-datasets/tree/main/llama_datasets/paul_graham_essay （文章型）
 
 ### 二、平台搭建
