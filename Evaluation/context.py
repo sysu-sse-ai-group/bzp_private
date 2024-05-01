@@ -1,4 +1,7 @@
 import os
+import actual_output
+import expected_output
+import retrieval_context
 
 from deepeval import evaluate
 from deepeval.metrics import ContextualPrecisionMetric
@@ -6,13 +9,13 @@ from deepeval.test_case import LLMTestCase
 os.environ['OPENAI_API_BASE'] = "https://api.chatanywhere.cn/v1"
 os.environ['OPENAI_API_KEY'] = 'sk-BRIGHrNUlXTmWZxfUn7aOBfMlLh7LicIpRohEyMgDJYfo7q4'
 # Replace this with the actual output from your LLM application
-actual_output = "We offer a 30-day full refund at no extra cost."
+actual_output = actual_output
 
 # Replace this with the expected output from your RAG generator
-expected_output = "You are eligible for a 30 day full refund at no extra cost."
+expected_output =expected_output
 
 # Replace this with the actual retrieved context from your RAG pipeline
-retrieval_context = ["All customers are eligible for a 30 day full refund at no extra cost."]
+retrieval_context = retrieval_context
 
 metric = ContextualPrecisionMetric(
     threshold=0.5,
@@ -20,13 +23,12 @@ metric = ContextualPrecisionMetric(
     include_reason=True
 )
 test_case = LLMTestCase(
-    input="What if these shoes don't fit?",
+    input=input(),
     actual_output=actual_output,
     expected_output=expected_output,
     retrieval_context=retrieval_context
 )
 
 metric.measure(test_case)
-print(metric.score)
-print(metric.reason)
+store(metric)
 
